@@ -21,3 +21,13 @@ fn main() -> Result<(), std::io::Error> {
     println!("Hello, world!");
     Ok(())
 }
+
+#[cfg(test)]
+mod tests {
+
+    #[test]
+    fn confidence_check() {
+        assert_eq!(1+1, 2);
+    }
+
+}
