@@ -2,6 +2,7 @@
 name = "obsession"
 version = "0.1.0"
 authors = ["Ryan O'Neill <ryanoneill@gmail.com>"]
+license = "MIT"
 edition = "2021"
 
 [dependencies]
