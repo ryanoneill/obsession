@@ -4,3 +4,5 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
+openssl = "0.10.71"
+ratatui = "0.29.0"
