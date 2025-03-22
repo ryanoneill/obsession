@@ -1,3 +1,4 @@
+use openssl::asn1::Asn1Time;
 use openssl::x509::X509;
 use openssl::x509::X509Name;
 use openssl::x509::X509NameBuilder;
@@ -15,6 +16,11 @@ fn main() -> Result<(), Box<dyn Error>> {
     let mut builder = X509Builder::new()?;
     builder.set_issuer_name(&name)?;
     builder.set_subject_name(&name)?;
+
+    let not_before = Asn1Time::days_from_now(0)?;
+    let not_after = Asn1Time::days_from_now(3650)?; // 10 years
+    builder.set_not_before(not_before.as_ref())?;
+    builder.set_not_after(not_after.as_ref())?;
 
     let cert: X509 = builder.build();
     println!("{:?}", cert);
