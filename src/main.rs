@@ -18,7 +18,6 @@ fn main() -> Result<(), std::io::Error> {
     let cert: X509 = builder.build();
     println!("{:?}", cert);
 
-    println!("Hello, world!");
     Ok(())
 }
 
