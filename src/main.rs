@@ -2,8 +2,9 @@ use openssl::x509::X509;
 use openssl::x509::X509Name;
 use openssl::x509::X509NameBuilder;
 use openssl::x509::X509Builder;
+use std::error::Error;
 
-fn main() -> Result<(), std::io::Error> {
+fn main() -> Result<(), Box<dyn Error>> {
     let mut name_builder: X509NameBuilder = X509NameBuilder::new()?;
     name_builder.append_entry_by_text("C", "US")?;
     name_builder.append_entry_by_text("ST", "CA")?;
