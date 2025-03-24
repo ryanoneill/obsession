@@ -1,4 +1,6 @@
+use openssl::asn1::Asn1Integer;
 use openssl::asn1::Asn1Time;
+use openssl::bn::BigNum;
 use openssl::x509::X509;
 use openssl::x509::X509Name;
 use openssl::x509::X509NameBuilder;
@@ -21,6 +23,10 @@ fn main() -> Result<(), Box<dyn Error>> {
     let not_after = Asn1Time::days_from_now(3650)?; // 10 years
     builder.set_not_before(not_before.as_ref())?;
     builder.set_not_after(not_after.as_ref())?;
+
+    let bn_serial = BigNum::from_hex_str("1234567890abcdef1234567890abcdef")?;
+    let asn1_serial = Asn1Integer::from_bn(&bn_serial)?;
+    builder.set_serial_number(&asn1_serial)?;
 
     let cert: X509 = builder.build();
     println!("{:?}", cert);
