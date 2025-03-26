@@ -46,10 +46,18 @@ fn main() -> Result<(), Box<dyn Error>> {
 
 #[cfg(test)]
 mod tests {
+    use crate::build_root_name;
 
     #[test]
-    fn confidence_check() {
-        assert_eq!(1+1, 2);
+    fn build_root_name_is_ok() {
+        let root_name_result = build_root_name();
+        assert!(root_name_result.is_ok());
+    }
+
+    #[test]
+    fn build_root_name_has_4_entries() {
+        let root_name = build_root_name().unwrap();
+        assert_eq!(root_name.entries().count(), 4);
     }
 
 }
