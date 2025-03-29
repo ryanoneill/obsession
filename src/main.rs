@@ -49,6 +49,7 @@ fn main() -> Result<(), Box<dyn Error>> {
     let name = build_root_name()?;
 
     let mut builder = X509Builder::new()?;
+    builder.set_version(2)?;
     builder.set_issuer_name(&name)?;
     builder.set_subject_name(&name)?;
 
